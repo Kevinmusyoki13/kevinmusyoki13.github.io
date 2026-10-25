@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kevin Musyoki | Zoho &amp; Full-Stack Developer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Kevin Musyoki, Zoho developer and full-stack web developer in Nairobi, Kenya. Zoho Creator, Deluge, Books, Flow, Next.js and React.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; hero splits name/thesis beside a live-looking sample dashboard; work reads as case-study rows, not a card grid */
+:root {
+  --paper: #F3F5F2;
+  --surface: #FFFFFF;
+  --ink: #14211C;
+  --muted: #55625C;
+  --line: #D5DCD7;
+  --accent: #9A5809;
+  --accent-fill: #E09A2E;
+  --accent-soft: #F7E8CF;
+  --good: #2E7A4D;
+  --good-2: #6FAE7F;
+  --warn: #C98A22;
+  --bad: #B54A3A;
+  --code-bg: #EEF1ED;
+  --font-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1512; --surface: #15201B; --ink: #E4ECE7; --muted: #9AA9A1; --line: #2A3732;
+    --accent: #EDB15A; --accent-fill: #E3A440; --accent-soft: #3A2D16;
+    --good: #5DBE84; --good-2: #3E8A5C; --warn: #D9A13F; --bad: #D9705F; --code-bg: #111A16;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1512; --surface: #15201B; --ink: #E4ECE7; --muted: #9AA9A1; --line: #2A3732;
+  --accent: #EDB15A; --accent-fill: #E3A440; --accent-soft: #3A2D16;
+  --good: #5DBE84; --good-2: #3E8A5C; --warn: #D9A13F; --bad: #D9705F; --code-bg: #111A16;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+/* Top bar */
+.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.mark { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; letter-spacing: 0.01em; text-decoration: none; color: var(--ink); }
+.nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 0.92rem; }
+.nav a { color: var(--muted); text-decoration: none; }
+.nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 64px 56px; }
+.status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; background: var(--surface); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+h1 { font-family: var(--font-display); font-weight: 800; font-stretch: 118%; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 0.98; letter-spacing: -0.01em; margin: 20px 0 8px; text-wrap: balance; }
+.role { font-family: var(--font-display); font-stretch: 100%; font-weight: 500; font-size: clamp(1.1rem, 2.4vw, 1.4rem); color: var(--muted); margin: 0 0 20px; }
+.thesis { font-size: 1.12rem; max-width: 58ch; margin: 0 0 28px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); background: transparent; font-family: var(--font-body); font-size: 0.95rem; cursor: pointer; }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:hover { border-color: var(--accent); }
+
+/* Sample dashboard (hero) */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: 0 18px 40px -28px rgba(20, 33, 28, 0.45); }
+.panel-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.panel-title { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 4px; }
+.gauge { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; }
+.gauge text { font-family: var(--font-mono); fill: var(--ink); }
+.gauge .sub { fill: var(--muted); font-size: 9px; }
+.rating { text-align: center; font-weight: 600; color: var(--good); margin: 0 0 14px; font-size: 0.95rem; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; border-top: 1px solid var(--line); padding-top: 14px; }
+.kpi .k { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.kpi .v { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.panel-note { font-size: 0.78rem; color: var(--muted); margin: 14px 0 0; }
+
+/* Sections */
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 0 0 8px; }
+h2 { font-family: var(--font-display); font-weight: 750; font-stretch: 110%; font-size: clamp(1.7rem, 3.6vw, 2.3rem); line-height: 1.1; margin: 0 0 12px; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 62ch; margin: 0 0 36px; }
+
+/* Case studies */
+.case { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); gap: 24px 48px; padding-block: 32px; border-top: 1px dashed var(--line); }
+.case:first-of-type { border-top: 0; padding-top: 0; }
+.case h3 { font-family: var(--font-display); font-weight: 750; font-stretch: 106%; font-size: 1.45rem; line-height: 1.15; margin: 0 0 6px; }
+.case .for { color: var(--muted); margin: 0 0 16px; font-size: 0.95rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 18px 28px; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.facts dd { margin: 0; font-family: var(--font-mono); font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.case p { margin: 0 0 14px; max-width: 65ch; }
+.case ul { margin: 0 0 16px; padding-left: 1.1rem; max-width: 65ch; }
+.case li { margin-bottom: 6px; }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font-family: var(--font-mono); font-size: 0.78rem; border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; color: var(--muted); background: var(--surface); }
+.soon { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px dashed var(--line); border-radius: 4px; padding: 2px 8px; margin-bottom: 12px; }
+
+/* Web projects */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.proj h3 { font-family: var(--font-display); font-weight: 700; font-stretch: 104%; font-size: 1.2rem; margin: 0; }
+.proj .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.proj p { margin: 0; }
+.metric { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 4px; }
+.metric b { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 500; color: var(--accent); display: block; line-height: 1.1; }
+.metric span { font-size: 0.82rem; color: var(--muted); }
+
+/* Code */
+.code-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; align-items: start; }
+.files { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 10px; }
+.files li { display: grid; gap: 2px; }
+.files code { font-family: var(--font-mono); font-size: 0.84rem; color: var(--ink); }
+.files span { font-size: 0.9rem; color: var(--muted); }
+pre { margin: 0; background: var(--code-bg); border: 1px solid var(--line); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.55; color: var(--ink); }
+pre .c { color: var(--muted); }
+pre .k { color: var(--accent); }
+
+/* Now building */
+.now { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; background: var(--accent-soft); border-radius: 14px; padding: 28px; }
+.now h3 { font-family: var(--font-display); font-weight: 700; font-stretch: 106%; font-size: 1.3rem; margin: 0 0 6px; }
+.now p { margin: 0; max-width: 62ch; }
+.now .stage { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); white-space: nowrap; }
+
+/* Experience */
+.timeline { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 8px 32px; padding-block: 18px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; }
+.when { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.row h3 { font-size: 1.05rem; margin: 0; font-weight: 600; }
+.row p { margin: 4px 0 0; color: var(--muted); max-width: 62ch; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 32px; }
+.skills h3 { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 10px; font-weight: 500; }
+.skills p { margin: 0; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+.contact h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.links { display: grid; gap: 12px; }
+.email-line { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.email { font-family: var(--font-mono); font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+.copy-status { font-size: 0.85rem; color: var(--good); min-height: 1.2em; }
+footer { padding-block: 28px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 820px) {
+  .hero, .case, .code-row, .contact, .pair { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 40px; gap: 32px; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .now { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 420px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">Kevin Musyoki</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#work">Zoho work</a>
+      <a href="#web">Web</a>
+      <a href="#code">Code</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <span class="status"><span class="dot" aria-hidden="true"></span>Open to Zoho and full-stack roles · remote or Nairobi</span>
+        <h1>Kevin Musyoki</h1>
+        <p class="role">Zoho developer &amp; full-stack web developer</p>
+        <p class="thesis">I turn day-to-day operations into working business systems. That means poultry production costed per bird and posted to Zoho Books, property leases billed and signed automatically, and fast Next.js web apps.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#work">See my Zoho work</a>
+          <a class="btn" href="https://github.com/Kevinmusyoki13" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/kevin-musyoki-64191a294" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <figure class="panel" aria-label="Sample feed conversion dashboard with demo data">
+        <div class="panel-head">
+          <span class="panel-title">Batch B-07 · Day 35 · Feed conversion</span>
+          <span class="tag">Demo data</span>
+        </div>
+        <svg class="gauge" viewBox="0 0 200 118" role="img" aria-label="Feed conversion ratio 1.58 against a target of 1.62, rated Good">
+          <path d="M20 100 A80 80 0 0 1 52.98 35.28" fill="none" stroke="var(--good)" stroke-width="14"/>
+          <path d="M52.98 35.28 A80 80 0 0 1 100 20" fill="none" stroke="var(--good-2)" stroke-width="14"/>
+          <path d="M100 20 A80 80 0 0 1 147.02 35.28" fill="none" stroke="var(--warn)" stroke-width="14"/>
+          <path d="M147.02 35.28 A80 80 0 0 1 180 100" fill="none" stroke="var(--bad)" stroke-width="14"/>
+          <line x1="100" y1="100" x2="75.7" y2="38.6" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="6" fill="var(--ink)"/>
+          <text x="100" y="88" text-anchor="middle" font-size="18" font-weight="500">1.58</text>
+          <text class="sub" x="20" y="114" text-anchor="middle">1.2</text>
+          <text class="sub" x="180" y="114" text-anchor="middle">2.2</text>
+          <text class="sub" x="100" y="114" text-anchor="middle">target 1.62</text>
+        </svg>
+        <p class="rating">Good: below target for day 35</p>
+        <div class="kpis">
+          <div class="kpi"><div class="k">Live birds</div><div class="v">4,846</div></div>
+          <div class="kpi"><div class="k">Mortality</div><div class="v">3.1%</div></div>
+          <div class="kpi"><div class="k">Cost / bird</div><div class="v">KES 312</div></div>
+        </div>
+        <figcaption class="panel-note">A recreation of one PoultryOS dashboard card, built in Zoho Creator with Deluge. Figures are made up.</figcaption>
+      </figure>
+    </div>
+
+    <section id="work" aria-labelledby="work-h">
+      <p class="eyebrow">Zoho systems</p>
+      <h2 id="work-h">Business systems I've built on Zoho</h2>
+      <p class="lede">Built at Finlanza Limited for real clients, on Zoho Creator and Deluge, connected to Books, CRM, Sign, Flow and Analytics. Screenshots are blurred to protect client data.</p>
+
+      <article class="case">
+        <div>
+          <h3>PoultryOS</h3>
+          <p class="for">Production and costing system for a poultry producer · 2026</p>
+          <dl class="facts">
+            <div><dt>Stages tracked</dt><dd>6</dd></div>
+            <div><dt>Dashboards</dt><dd>3</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p>Tracks every flock from placement to sale, and keeps the accounts in step with the farm.</p>
+          <ul>
+            <li>Batches, daily mortality, feed and medicine issuance, slaughter, packaging and sales dispatch in one Creator app.</li>
+            <li>Daily cost per bird pooled across chicks, feed, medicine and vaccines, with stock issuance posting inventory adjustments and journals to Zoho Books.</li>
+            <li>Operations, feed conversion ratio and batch profitability dashboards, with per-batch gauges rated against a day-7 to day-42 target curve.</li>
+          </ul>
+          <div class="stack"><span>Zoho Creator</span><span>Deluge</span><span>Books API</span><span>HTML pages</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div>
+          <h3>PropertyOS</h3>
+          <p class="for">Property management ERP on Zoho Vertical Studio · 2026</p>
+          <dl class="facts">
+            <div><dt>Forms</dt><dd>12</dd></div>
+            <div><dt>Functions</dt><dd>10</dd></div>
+            <div><dt>Flows</dt><dd>11</dd></div>
+          </dl>
+        </div>
+        <div>
+          <p>Built from a full solution architecture, covering the work of running rental property from onboarding to statements.</p>
+          <ul>
+            <li>Landlords, tenants, properties, units, leases with deposits, maintenance jobs and landlord statements.</li>
+            <li>Leases bill through Zoho Books and go out for signature in Zoho Sign; tenants get SMS notices.</li>
+            <li>Eleven Zoho Flow automations handle the hand-offs between apps.</li>
+          </ul>
+          <div class="stack"><span>Vertical Studio</span><span>Creator</span><span>Deluge</span><span>Flow</span><span>Books</span><span>Sign</span><span>Analytics</span></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div>
+          <h3>Property management system</h3>
+          <p class="for">Client project for a real-estate company · Zoho</p>
+        </div>
+        <div>
+          <span class="soon">Case study coming soon</span>
+          <p>A Zoho-based property management system delivered for a second client. Screenshots and details are being prepared.</p>
+          <div class="stack"><span>Zoho Creator</span><span>Deluge</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="web" aria-labelledby="web-h">
+      <p class="eyebrow">Web</p>
+      <h2 id="web-h">Web applications</h2>
+      <p class="lede">Built with Next.js, React, Node.js and PHP.</p>
+      <div class="pair">
+        <article class="proj">
+          <h3>GBV case management system</h3>
+          <span class="meta">Next.js · 2023</span>
+          <p>A web app for managing gender-based violence cases. I tuned it for speed and usability, measuring with Lighthouse, Google Analytics and heat maps.</p>
+          <div class="metric">
+            <div><b>40%</b><span>faster page loads</span></div>
+            <div><b>25%</b><span>more user engagement</span></div>
+          </div>
+        </article>
+        <article class="proj">
+          <h3>Event management system</h3>
+          <span class="meta">Machakos University · 2025</span>
+          <p>Event registration, event listings and attendance tracking for university events, built as a full web application.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="code" aria-labelledby="code-h">
+      <p class="eyebrow">Open source</p>
+      <h2 id="code-h">Zoho Deluge snippets</h2>
+      <p class="lede">Reusable patterns from my client work, rewritten with made-up form names so anyone can use them.</p>
+      <div class="code-row">
+        <div>
+          <ul class="files">
+            <li><code>update_batch_rollups.dg</code><span>Recalculates parent totals from child logs</span></li>
+            <li><code>post_inventory_adjustment.dg</code><span>Posts stock issues to Zoho Books via the API</span></li>
+            <li><code>rent_reminder_schedule.dg</code><span>Emails tenants 3 days before rent is due</span></li>
+            <li><code>kpi_cards_page.dg</code><span>Live KPI cards for a Creator dashboard</span></li>
+          </ul>
+          <a class="btn" href="https://github.com/Kevinmusyoki13/zoho-deluge-snippets" target="_blank" rel="noopener">View the repository</a>
+        </div>
+        <pre><code><span class="c">// Sum child records and write them back to the batch</span>
+total_dead = Mortality_Log[Batch == batch_id].sum(Birds_Dead);
+total_feed = Feed_Issuance[Batch == batch_id].sum(Quantity_Kg);
+batch.Total_Mortality = total_dead;
+batch.Live_Birds = batch.Birds_Placed - total_dead;
+<span class="k">if</span>(batch.Birds_Placed &gt; 0)
+{
+	batch.Mortality_Rate = (total_dead * 100 / batch.Birds_Placed).round(2);
+}</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="now-h">
+      <div class="now">
+        <div>
+          <p class="eyebrow">Now building</p>
+          <h3 id="now-h">Live bird counter for poultry houses</h3>
+          <p>Computer vision with YOLOv10 to count birds live from coop cameras and flag birds that stop moving, so losses are caught the same day.</p>
+        </div>
+        <span class="stage">Early stage · Python</span>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-h">Experience and education</h2>
+      <div class="timeline">
+        <div class="row">
+          <span class="when">2026</span>
+          <div><h3>Zoho Developer (Intern), Finlanza Limited</h3><p>Build Zoho systems for clients on Creator, Deluge, Books, CRM, Sign and Flow, and automate daily tasks with Zoho Flow.</p></div>
+        </div>
+        <div class="row">
+          <span class="when">2024 – 2025</span>
+          <div><h3>ICT Attachment, State Department for Shipping and Maritime Affairs</h3><p>Supported system development and data handling in the ICT department.</p></div>
+        </div>
+        <div class="row">
+          <span class="when">2021 – 2025</span>
+          <div><h3>BSc Computer Science, Machakos University</h3><p>Second Class Honours, Upper Division.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="skills-h">
+      <p class="eyebrow">Skills</p>
+      <h2 id="skills-h">What I work with</h2>
+      <div class="skills">
+        <div><h3>Zoho</h3><p>Creator, Deluge, Books, CRM, Flow, Sign, Analytics, Vertical Studio</p></div>
+        <div><h3>Web</h3><p>JavaScript, React, Next.js, Node.js, PHP, HTML, CSS</p></div>
+        <div><h3>Other</h3><p>Java, Python, Android development, Lighthouse audits, Google Analytics</p></div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-h">Let's build your next system.</h2>
+          <p class="lede" style="margin-bottom:0">Based in Nairobi, Kenya (UTC+3). Available for full-time roles, internships and contract work.</p>
+        </div>
+        <div class="links">
+          <div class="email-line">
+            <span class="email" id="email">kevinmusyoki13@gmail.com</span>
+            <button class="btn" id="copy-email" type="button">Copy email</button>
+          </div>
+          <span class="copy-status" id="copy-status" aria-live="polite"></span>
+          <a href="https://linkedin.com/in/kevin-musyoki-64191a294" target="_blank" rel="noopener">linkedin.com/in/kevin-musyoki-64191a294</a>
+          <a href="https://github.com/Kevinmusyoki13" target="_blank" rel="noopener">github.com/Kevinmusyoki13</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Kevin Musyoki</span>
+    <span>Nairobi, Kenya</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var status = document.getElementById('copy-status');
+  var email = document.getElementById('email');
+  function selectText() {
+    var range = document.createRange();
+    range.selectNodeContents(email);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        status.textContent = 'Copied to clipboard.';
+      }).catch(function () {
+        selectText();
+        status.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+      });
+    } else {
+      selectText();
+      status.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
